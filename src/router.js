@@ -6,10 +6,13 @@ const Home = () => import('./pages/Home.vue')
 const Products = () => import('./pages/Products.vue')
 const ProductDetail = () => import('./pages/ProductDetail.vue')
 const Cart = () => import('./pages/Cart.vue')
+const Checkout = () => import('./pages/Checkout.vue')
 const Auth = () => import('./pages/Auth.vue')
 const Contact = () => import('./pages/Contact.vue')
 const FAQ = () => import('./pages/FAQ.vue')
 const About = () => import('./pages/About.vue')
+const Location = () => import('./pages/Location.vue')
+const Privacy = () => import('./pages/Privacy.vue')
 const Profile = () => import('./pages/Profile.vue')
 const Wishlist = () => import('./pages/Wishlist.vue')
 const AdminLayout = () => import('./pages/admin/Layout.vue')
@@ -22,10 +25,13 @@ const routes = [
   { path: '/products', component: Products },
   { path: '/products/:id', component: ProductDetail },
   { path: '/cart', component: Cart },
+  { path: '/checkout', component: Checkout },
   { path: '/auth', component: Auth },
   { path: '/contact', component: Contact },
   { path: '/faq', component: FAQ },
   { path: '/about', component: About },
+  { path: '/location', component: Location },
+  { path: '/privacy', component: Privacy },
   { path: '/wishlist', component: Wishlist },
   { 
     path: '/profile', 

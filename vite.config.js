@@ -32,7 +32,9 @@ export default defineConfig({
       '@heroicons/vue',
       '@supabase/supabase-js',
       'vue-toastification',
-      'swiper'
+      'swiper',
+      'vue-chartjs',
+      'chart.js'
     ]
   }
 })

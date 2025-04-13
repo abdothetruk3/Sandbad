@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import { MotionPlugin } from '@vueuse/motion'
 import Toast from 'vue-toastification'
-import { createPinia, PiniaVuePlugin } from 'pinia'
+import { createPinia } from 'pinia'
 import 'vue-toastification/dist/index.css'
 import './style.css'
 import App from './App.vue'
@@ -30,7 +30,6 @@ const toastOptions = {
 
 app.use(router)
 app.use(MotionPlugin)
-app.use(PiniaVuePlugin)
 app.use(pinia)
 app.use(Toast, toastOptions)
 

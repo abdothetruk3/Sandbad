@@ -44,7 +44,7 @@
       >
         <h2 class="text-xl font-semibold mb-6">Sales Overview</h2>
         <div class="h-64">
-          <LineChart :chartData="salesChartData" :options="chartOptions" />
+          <LineChart :data="salesChartData" :options="chartOptions" />
         </div>
       </div>
 
@@ -167,7 +167,7 @@
         <div class="bg-gradient-to-br from-primary/5 to-secondary/5 p-4 rounded-lg">
           <h3 class="text-lg font-medium mb-4">Sales by Category</h3>
           <div class="h-48">
-            <DoughnutChart :chartData="categoryChartData" :options="doughnutOptions" />
+            <DoughnutChart :data="categoryChartData" :options="doughnutOptions" />
           </div>
         </div>
         
@@ -175,7 +175,7 @@
         <div class="bg-gradient-to-br from-secondary/5 to-primary/5 p-4 rounded-lg">
           <h3 class="text-lg font-medium mb-4">Monthly Revenue</h3>
           <div class="h-48">
-            <BarChart :chartData="monthlyRevenueData" :options="barOptions" />
+            <BarChart :data="monthlyRevenueData" :options="barOptions" />
           </div>
         </div>
         
@@ -183,7 +183,7 @@
         <div class="bg-gradient-to-br from-primary/5 to-secondary/5 p-4 rounded-lg">
           <h3 class="text-lg font-medium mb-4">User Demographics</h3>
           <div class="h-48">
-            <PieChart :chartData="userDemographicsData" :options="doughnutOptions" />
+            <PieChart :data="userDemographicsData" :options="doughnutOptions" />
           </div>
         </div>
       </div>
@@ -349,11 +349,11 @@ import {
   ClipboardDocumentListIcon,
   Cog6ToothIcon
 } from '@heroicons/vue/24/outline'
-import { LineChart, BarChart, DoughnutChart, PieChart } from 'vue-chartjs'
-import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, ArcElement, BarElement } from 'chart.js'
+import { Line as LineChart, Bar as BarChart, Doughnut as DoughnutChart, Pie as PieChart } from 'vue-chartjs'
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title, Tooltip, Legend, ArcElement } from 'chart.js'
 
 // Register Chart.js components
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, ArcElement, BarElement)
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title, Tooltip, Legend, ArcElement)
 
 export default {
   name: 'AdminDashboard',

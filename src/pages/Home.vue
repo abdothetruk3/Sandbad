@@ -63,7 +63,7 @@
               <HeartIcon class="w-6 h-6 text-red-500" />
             </div>
             <div class="absolute top-1/3 -right-4 bg-white p-3 rounded-full shadow-elevation-2 animate-float" style="animation-delay: 1s;">
-              <PillIcon class="w-6 h-6 text-primary" />
+              <BeakerIcon class="w-6 h-6 text-primary" />
             </div>
           </div>
         </div>
@@ -403,7 +403,7 @@ import {
   HeartIcon,
   ChatBubbleBottomCenterTextIcon,
   MagnifyingGlassCircleIcon,
-  PillIcon
+  BeakerIcon
 } from '@heroicons/vue/24/outline'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Navigation as SwiperNavigation, Pagination as SwiperPagination, Autoplay as SwiperAutoplay } from 'swiper/modules'
@@ -423,7 +423,7 @@ export default {
     HeartIcon,
     ChatBubbleBottomCenterTextIcon,
     MagnifyingGlassCircleIcon,
-    PillIcon,
+    BeakerIcon,
     ProductWishlistButton,
     Swiper,
     SwiperSlide

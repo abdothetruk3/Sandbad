@@ -8,18 +8,18 @@ export default {
     extend: {
       colors: {
         primary: {
-          DEFAULT: '#0e7490', // Teal 700 - more medical
-          50: '#f0fdfa',
-          100: '#ccfbf1',
-          200: '#99f6e4',
-          300: '#5eead4',
-          400: '#2dd4bf',
-          500: '#14b8a6',
-          600: '#0d9488',
-          700: '#0e7490',
-          800: '#115e59',
-          900: '#134e4a',
-          950: '#042f2e'
+          DEFAULT: '#D35400', // Dark orange
+          50: '#FEF5EC',
+          100: '#FDEAD9',
+          200: '#FAD5B3',
+          300: '#F7C08D',
+          400: '#F4AB67',
+          500: '#F19742',
+          600: '#ED820C',
+          700: '#D35400',
+          800: '#A74300',
+          900: '#7B3200',
+          950: '#522100'
         },
         secondary: {
           DEFAULT: '#3b82f6', // Blue 500

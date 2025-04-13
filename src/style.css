@@ -9,7 +9,7 @@
   scroll-behavior: smooth;
   
   /* Custom Properties */
-  --primary-color: #0e7490;
+  --primary-color: #D35400;
   --secondary-color: #3b82f6;
   --primary-font: Inter, sans-serif;
   --font-size-base: 16px;
@@ -20,7 +20,7 @@ body {
   min-width: 320px;
   min-height: 100vh;
   background-color: #f8fafc;
-  background-image: radial-gradient(circle at 20px 20px, rgba(14, 116, 144, 0.03) 0%, rgba(14, 116, 144, 0.01) 100%);
+  background-image: radial-gradient(circle at 20px 20px, rgba(211, 84, 0, 0.03) 0%, rgba(211, 84, 0, 0.01) 100%);
   font-size: var(--font-size-base);
 }
 
@@ -110,19 +110,19 @@ body {
 
 /* Doctor-like gradients */
 .doctor-gradient-bg {
-  @apply bg-gradient-to-r from-blue-500 to-teal-400;
+  @apply bg-gradient-to-r from-blue-500 to-primary;
 }
 
 .doctor-gradient-light-bg {
-  @apply bg-gradient-to-r from-blue-100 to-teal-100;
+  @apply bg-gradient-to-r from-blue-100 to-primary-100;
 }
 
 .medical-hero-gradient {
-  @apply bg-gradient-to-br from-blue-600/10 via-white to-teal-500/10;
+  @apply bg-gradient-to-br from-primary-600/10 via-white to-secondary/10;
 }
 
 .medical-card-gradient {
-  @apply bg-gradient-to-r from-blue-50 to-teal-50;
+  @apply bg-gradient-to-r from-primary-50 to-secondary-50;
 }
 
 .medical-accent-gradient {
@@ -137,7 +137,7 @@ body {
 
 /* Enhanced Gradient Backgrounds */
 .gradient-primary-soft {
-  background: linear-gradient(135deg, rgba(14, 116, 144, 0.15) 0%, rgba(20, 184, 166, 0.05) 100%);
+  background: linear-gradient(135deg, rgba(211, 84, 0, 0.15) 0%, rgba(20, 184, 166, 0.05) 100%);
 }
 
 .gradient-secondary-soft {
@@ -145,12 +145,12 @@ body {
 }
 
 .gradient-card-hover {
-  background: radial-gradient(circle at top right, rgba(14, 116, 144, 0.05) 0%, rgba(59, 130, 246, 0.02) 100%);
+  background: radial-gradient(circle at top right, rgba(211, 84, 0, 0.05) 0%, rgba(59, 130, 246, 0.02) 100%);
   transition: all 0.3s ease;
 }
 
 .gradient-card-hover:hover {
-  background: radial-gradient(circle at top right, rgba(14, 116, 144, 0.1) 0%, rgba(59, 130, 246, 0.05) 100%);
+  background: radial-gradient(circle at top right, rgba(211, 84, 0, 0.1) 0%, rgba(59, 130, 246, 0.05) 100%);
 }
 
 /* Loading Skeleton */

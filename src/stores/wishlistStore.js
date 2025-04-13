@@ -1,5 +1,5 @@
 import { ref, computed } from 'vue'
-import { defineStore } from '@vueuse/core'
+import { defineStore } from 'pinia'
 
 export const useWishlistStore = defineStore('wishlist', () => {
   const wishlistItems = ref([])

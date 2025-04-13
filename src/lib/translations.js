@@ -16,7 +16,8 @@ export const translations = {
       about: 'About',
       cart: 'Cart',
       profile: 'Profile',
-      orders: 'Orders'
+      orders: 'Orders',
+      wishlist: 'Wishlist'
     },
     auth: {
       welcomeBack: 'Welcome Back',
@@ -91,7 +92,8 @@ export const translations = {
       about: 'من نحن',
       cart: 'السلة',
       profile: 'الملف الشخصي',
-      orders: 'الطلبات'
+      orders: 'الطلبات',
+      wishlist: 'المفضلة'
     },
     auth: {
       welcomeBack: 'مرحباً بعودتك',
