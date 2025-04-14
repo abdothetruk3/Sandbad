@@ -6,6 +6,7 @@ import 'vue-toastification/dist/index.css'
 import './style.css'
 import App from './App.vue'
 import { router } from './router'
+import { registerBuiltInPlugins } from './lib/plugins'
 
 // Measure app start time for performance
 const startTime = performance.now()
@@ -32,6 +33,10 @@ app.use(router)
 app.use(MotionPlugin)
 app.use(pinia)
 app.use(Toast, toastOptions)
+
+// Initialize plugin system
+registerBuiltInPlugins()
+// Removed registerExamplePlugins() to prevent duplicate registration
 
 // Mount the app
 app.mount('#app')

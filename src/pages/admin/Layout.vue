@@ -1,68 +1,78 @@
 <template>
   <div class="min-h-screen bg-gray-50">
-    <!-- Sidebar -->
-    <aside class="fixed inset-y-0 left-0 w-64 bg-white border-r transform -translate-x-full lg:translate-x-0 transition-transform duration-200 ease-in-out">
-      <div class="h-16 flex items-center justify-center border-b">
-        <router-link to="/admin" class="text-xl font-bold text-primary flex items-center gap-2">
-          <ShieldCheckIcon class="w-6 h-6" />
-          Admin Panel
-        </router-link>
-      </div>
-      
-      <nav class="p-4 space-y-2">
-        <router-link
-          v-for="link in navLinks"
-          :key="link.path"
-          :to="link.path"
-          class="flex items-center gap-3 px-4 py-2 rounded-lg text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors"
-          :class="{ 'bg-primary/5 text-primary': isCurrentRoute(link.path) }"
-        >
-          <component :is="link.icon" class="w-5 h-5" />
-          {{ link.label }}
-        </router-link>
-      </nav>
-    </aside>
-
-    <!-- Main Content -->
-    <main class="lg:ml-64 min-h-screen">
-      <header class="h-16 bg-white border-b px-4 flex items-center justify-between">
-        <button
-          @click="toggleSidebar"
-          class="lg:hidden p-2 rounded-lg hover:bg-gray-100"
-        >
-          <Bars3Icon class="w-6 h-6" />
-        </button>
-
-        <div class="flex items-center gap-4">
-          <button
-            @click="handleLogout"
-            class="btn btn-primary"
-          >
-            Logout
-          </button>
+    <!-- Top Admin Bar (WordPress Style) -->
+    <div class="bg-primary text-white h-10 fixed inset-x-0 top-0 z-40 flex items-center px-4">
+      <div class="flex items-center justify-between w-full">
+        <div class="flex items-center space-x-4">
+          <router-link to="/" class="flex items-center gap-2" target="_blank">
+            <HomeIcon class="w-4 h-4" />
+            <span class="text-sm">Visit Site</span>
+          </router-link>
+          
+          <div class="flex items-center gap-2 text-sm">
+            <span class="hidden md:inline-block">
+              Welcome, {{ userDisplayName }}
+            </span>
+          </div>
         </div>
-      </header>
-
-      <div class="p-6">
-        <router-view></router-view>
+        
+        <div class="flex items-center space-x-4">
+          <button class="relative hover:text-white/80" @click="showNotifications = !showNotifications">
+            <BellIcon class="w-5 h-5" />
+            <span v-if="unreadNotificationsCount > 0" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
+              {{ unreadNotificationsCount }}
+            </span>
+          </button>
+          
+          <button class="relative hover:text-white/80" @click="showMessages = !showMessages">
+            <EnvelopeIcon class="w-5 h-5" />
+            <span v-if="unreadMessagesCount > 0" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
+              {{ unreadMessagesCount }}
+            </span>
+          </button>
+          
+          <a href="#" class="hover:text-white/80">
+            <QuestionMarkCircleIcon class="w-5 h-5" />
+          </a>
+        </div>
       </div>
-    </main>
+    </div>
+
+    <!-- Rest of template content -->
   </div>
 </template>
 
 <script>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { supabase } from '../../lib/supabase'
 import { useToast } from 'vue-toastification'
 import {
   ShieldCheckIcon,
   Bars3Icon,
+  XMarkIcon,
   HomeIcon,
   ShoppingBagIcon,
   UserGroupIcon,
+  ClipboardDocumentListIcon,
+  Cog6ToothIcon,
   ChartBarIcon,
-  Cog6ToothIcon
+  ChevronDownIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  ArrowPathIcon,
+  MagnifyingGlassIcon,
+  BellIcon,
+  EnvelopeIcon,
+  PencilSquareIcon,
+  TagIcon,
+  DocumentTextIcon,
+  QuestionMarkCircleIcon,
+  CreditCardIcon,
+  CalculatorIcon,
+  PuzzlePieceIcon,
+  AcademicCapIcon,
+  WrenchScrewdriverIcon
 } from '@heroicons/vue/24/outline'
 
 export default {
@@ -70,51 +80,67 @@ export default {
   components: {
     ShieldCheckIcon,
     Bars3Icon,
+    XMarkIcon,
     HomeIcon,
     ShoppingBagIcon,
     UserGroupIcon,
+    ClipboardDocumentListIcon,
+    Cog6ToothIcon,
     ChartBarIcon,
-    Cog6ToothIcon
+    ChevronDownIcon,
+    ChevronLeftIcon,
+    ChevronRightIcon,
+    ArrowPathIcon,
+    MagnifyingGlassIcon,
+    BellIcon,
+    EnvelopeIcon,
+    PencilSquareIcon,
+    TagIcon,
+    DocumentTextIcon,
+    QuestionMarkCircleIcon,
+    CreditCardIcon,
+    CalculatorIcon,
+    PuzzlePieceIcon,
+    AcademicCapIcon,
+    WrenchScrewdriverIcon
   },
   setup() {
-    const router = useRouter()
-    const route = useRoute()
-    const toast = useToast()
-    const sidebarOpen = ref(false)
-
-    const navLinks = [
-      { path: '/admin', label: 'Dashboard', icon: 'HomeIcon' },
-      { path: '/admin/products', label: 'Products', icon: 'ShoppingBagIcon' },
-      { path: '/admin/orders', label: 'Orders', icon: 'ChartBarIcon' },
-      { path: '/admin/customers', label: 'Customers', icon: 'UserGroupIcon' },
-      { path: '/admin/settings', label: 'Settings', icon: 'Cog6ToothIcon' }
-    ]
-
-    const isCurrentRoute = (path) => {
-      return route.path === path
-    }
-
-    const toggleSidebar = () => {
-      sidebarOpen.value = !sidebarOpen.value
-    }
-
-    const handleLogout = async () => {
-      try {
-        await supabase.auth.signOut()
-        toast.success('Logged out successfully')
-        router.push('/auth')
-      } catch (error) {
-        toast.error('Error logging out')
-      }
-    }
-
-    return {
-      navLinks,
-      sidebarOpen,
-      isCurrentRoute,
-      toggleSidebar,
-      handleLogout
-    }
+    // Setup code
   }
 }
 </script>
+
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.line-clamp-1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.wp-menu-item {
+  @apply flex items-center gap-2 px-4 py-2 rounded-lg transition-colors;
+}
+
+.wp-menu-item.active {
+  @apply bg-primary/10 text-primary;
+}
+
+.wp-menu-item:hover:not(.active) {
+  @apply bg-gray-100;
+}
+
+.wp-notice {
+  @apply p-4 rounded border-l-4 mb-4;
+}
+</style>

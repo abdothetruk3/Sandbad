@@ -20,7 +20,7 @@
       <router-link to="/products" class="btn btn-primary">Browse Products</router-link>
     </div>
 
-    <div v-else class="grid lg:grid-cols-3 gap-8">
+    <div v-else>
       <!-- Rest of the template content -->
     </div>
   </div>
@@ -31,6 +31,8 @@ import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useCartStore } from '../stores/cartStore'
 import { useToast } from 'vue-toastification'
+import { supabase } from '../lib/supabase'
+import StripePayment from '../components/StripePayment.vue'
 import {
   ShoppingCartIcon,
   ArrowRightIcon,
@@ -39,7 +41,7 @@ import {
   CheckCircleIcon,
   HomeIcon,
   ClipboardDocumentListIcon,
-  LockClosedIcon
+  ShieldCheckIcon
 } from '@heroicons/vue/24/outline'
 
 export default {
@@ -52,32 +54,22 @@ export default {
     CheckCircleIcon,
     HomeIcon,
     ClipboardDocumentListIcon,
-    LockClosedIcon
+    ShieldCheckIcon,
+    StripePayment
   },
   setup() {
-    // Setup code content
+    // Setup code
     return {
-      cartStore,
-      steps,
-      currentStep,
-      shippingInfo,
-      shippingMethods,
-      paymentInfo,
-      paymentMethods,
-      couponCode,
-      orderNumber,
-      isShippingFormValid,
-      isPaymentFormValid,
-      nextStep,
-      prevStep,
-      getShippingMethodName,
-      getShippingMethodPrice,
-      getShippingCost,
-      getPaymentMethodName,
-      calculateTax,
-      calculateTotal,
-      placeOrder
+      // Return values
     }
   }
 }
 </script>
+
+<style scoped>
+/* Custom styles for checkout page */
+.steps-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+}
+</style>

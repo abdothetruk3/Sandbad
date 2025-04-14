@@ -19,6 +19,8 @@ const AdminLayout = () => import('./pages/admin/Layout.vue')
 const AdminDashboard = () => import('./pages/admin/Dashboard.vue')
 const AdminSettings = () => import('./pages/admin/Settings.vue')
 const AdminProductManager = () => import('./pages/admin/ProductManager.vue')
+const AdminOrderManager = () => import('./pages/admin/OrderManager.vue')
+const AdminPluginsManager = () => import('./pages/admin/PluginsManager.vue')
 
 const routes = [
   { path: '/', component: Home },
@@ -45,7 +47,9 @@ const routes = [
     children: [
       { path: '', component: AdminDashboard },
       { path: 'settings', component: AdminSettings },
-      { path: 'products', component: AdminProductManager }
+      { path: 'products', component: AdminProductManager },
+      { path: 'orders', component: AdminOrderManager },
+      { path: 'plugins', component: AdminPluginsManager }
     ]
   }
 ]

@@ -1,5 +1,8 @@
 <template>
   <div :class="{'rtl': currentLocale === 'ar', 'ltr': currentLocale !== 'ar'}" class="min-h-screen bg-gradient-to-br from-blue-50 to-white flex flex-col">
+    <!-- Admin Toolbar for admin users -->
+    <AdminToolbar />
+    
     <div class="bg-blue-600 text-white py-2 text-center">
       <div class="container mx-auto px-4 flex justify-between items-center">
         <div class="flex items-center gap-2">
@@ -22,6 +25,9 @@
       </router-view>
     </main>
     <Footer />
+    
+    <!-- Live Chat Widget -->
+    <LiveChat />
   </div>
 </template>
 
@@ -29,6 +35,8 @@
 import { ref, provide, watch, onMounted, computed } from 'vue'
 import Navbar from './components/Navbar.vue'
 import Footer from './components/Footer.vue'
+import LiveChat from './components/LiveChat.vue'
+import AdminToolbar from './components/AdminToolbar.vue'
 import { PhoneIcon } from '@heroicons/vue/24/outline'
 import { translations, currentLocale as defaultLocale } from './lib/translations'
 import { supabase } from './lib/supabase'
@@ -39,7 +47,9 @@ export default {
   components: {
     Navbar,
     Footer,
-    PhoneIcon
+    PhoneIcon,
+    LiveChat,
+    AdminToolbar
   },
   setup() {
     const currentLocale = ref(defaultLocale)
